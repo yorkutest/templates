@@ -12,9 +12,6 @@ on:
     secrets:
       token:
         required: true
-
-permissions:
-  issues: write
   
 jobs:
   terraform-plan:
