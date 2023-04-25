@@ -12,8 +12,7 @@ jobs:
     
     steps:
     - name: Setup private repo credentials for private modules
-      run: git config --global url."https://git:${{ inputs.token }}@github.com/${{ github.repository_owner }}".insteadOf "https://github.com/${{ github.repository_owner }}"
-      shell: sh
+      run: git config --global url."https://git:${{ inputs.token }}@github.com/".insteadOf "https://github.com/"
 
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
