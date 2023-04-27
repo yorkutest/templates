@@ -2,17 +2,17 @@ name: 'Terraform Unit Tests'
 
 on:
   workflow_call:
-    secrets:
-      token:
-        required: true
+#    secrets:
+#      token:
+#        required: true
 jobs:
   terraform-unit-tests:
     name: 'Terraform Unit Tests'
     runs-on: self-hosted
     
     steps:
-    - name: Setup private repo credentials for private modules
-      run: git config --global url."https://git:${{ inputs.token }}@github.com/".insteadOf "https://github.com/"
+#    - name: Setup private repo credentials for private modules
+#      run: git config --global url."https://git:${{ inputs.token }}@github.com/".insteadOf "https://github.com/"
 
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
