@@ -29,8 +29,6 @@ jobs:
   terraform-plan:
     name: 'Terraform Plan'
     runs-on: self-hosted
-    environment:
-      name: ${ { inputs.target-env } }
     env:
       ARM_SKIP_PROVIDER_REGISTRATION: true
     outputs:
@@ -125,6 +123,9 @@ jobs:
     name: 'Terraform Apply'
     if: inputs.deploymentType == 'Create' && github.ref == 'refs/heads/main' && needs.terraform-plan.outputs.tfplanExitCode == 2
     runs-on: self-hosted
+    environment:
+      name: ${ { inputs.target-env } }
+
     #environment: production
     needs: [terraform-plan]
     
