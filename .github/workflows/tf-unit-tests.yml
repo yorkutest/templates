@@ -7,7 +7,7 @@ on:
 #        required: true
 jobs:
   terraform-unit-tests:
-    name: 'Terraform Unit Tests'
+    name: 'Terraform Tests'
     runs-on: self-hosted
     
     steps:
