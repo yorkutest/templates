@@ -18,9 +18,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+     # Terraform is already installed on the runner to save time.
+#    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+#    - name: Setup Terraform
+#      uses: hashicorp/setup-terraform@v2
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
@@ -33,8 +34,16 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check -recursive
-    
-    # Perform a security scan of the terraform code using checkov
+
+    # Run tflint that's already installed on the runner
+    # Install plugins
+    - name: Init TFLint
+      run: tflint --init
+    # Runn tflint  
+    - name: Run TFLint
+      run: tflint -f compact --recursive 
+
+      # Perform a security scan of the terraform code using checkov
     - name: Run Checkov action
       id: checkov
       uses: bridgecrewio/checkov-action@master
