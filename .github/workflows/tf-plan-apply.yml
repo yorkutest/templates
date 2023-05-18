@@ -18,9 +18,9 @@ on:
         storageKey:
           required: true
           type: string
-    secrets:
-      token:
-        required: true
+#    secrets:
+#      token:
+#        required: true
 
 jobs:
   terraform-plan:
