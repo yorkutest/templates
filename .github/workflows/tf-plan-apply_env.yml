@@ -32,8 +32,8 @@ jobs:
   terraform-plan:
     name: 'Terraform Plan'
     runs-on: ${{ inputs.runsOn }}
-    environment:
-      name: ${{ inputs.targetEnv }}
+#    environment:
+#      name: ${{ inputs.targetEnv }}
     env:
       ARM_SKIP_PROVIDER_REGISTRATION: true
       ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
