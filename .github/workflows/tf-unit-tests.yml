@@ -2,13 +2,17 @@ name: 'Terraform Unit Tests'
 
 on:
   workflow_call:
+    inputs:
+      runsOn:
+        type: string
+        default: self-hosted
 #    secrets:
 #      token:
 #        required: true
 jobs:
   terraform-unit-tests:
     name: 'Terraform Unit Tests'
-    runs-on: self-hosted
+    runs-on: ${{ inputs.runsOn }}
     
     steps:
 #    - name: Setup private repo credentials for private modules
