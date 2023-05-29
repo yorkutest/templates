@@ -50,10 +50,16 @@ jobs:
 #      name: Setup TFLint
 #      with:
 #        tflint_version: latest
-#
-#    - name: Show version
-#      run: tflint --version
-#
+
+    - name: Init TFLint
+      run: tflint --init
+      env:
+        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+        GITHUB_TOKEN: ${{ github.token }}
+
+    - name: Show version
+      run: tflint --version
+
 #    - name: Init TFLint
 #      run: tflint --init
 #      env:
@@ -61,9 +67,7 @@ jobs:
 #        GITHUB_TOKEN: ${{ github.token }}
 
     - name: Run TFLint
-      run: |
-        tflint -v
-        tflint -f compact --module --recursive
+      run: tflint -f compact --module --recursive
 
       # Perform a security scan of the terraform code using checkov
 #    - name: Run Checkov action
