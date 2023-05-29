@@ -40,25 +40,25 @@ jobs:
       run: terraform fmt -check -recursive
 
     # Start liniting 
-    - uses: actions/cache@v3
-      name: Cache plugin dir
-      with:
-        path: ~/.tflint.d/plugins
-        key: tflint-${{ hashFiles('.tflint.hcl') }}
-
-    - uses: terraform-linters/setup-tflint@v3
-      name: Setup TFLint
-      with:
-        tflint_version: latest
-
-    - name: Show version
-      run: tflint --version
-
-    - name: Init TFLint
-      run: tflint --init
-      env:
-        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
-        GITHUB_TOKEN: ${{ github.token }}
+#    - uses: actions/cache@v3
+#      name: Cache plugin dir
+#      with:
+#        path: ~/.tflint.d/plugins
+#        key: tflint-${{ hashFiles('.tflint.hcl') }}
+#
+#    - uses: terraform-linters/setup-tflint@v3
+#      name: Setup TFLint
+#      with:
+#        tflint_version: latest
+#
+#    - name: Show version
+#      run: tflint --version
+#
+#    - name: Init TFLint
+#      run: tflint --init
+#      env:
+#        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+#        GITHUB_TOKEN: ${{ github.token }}
 
     - name: Run TFLint
       run: tflint -f compact
@@ -70,7 +70,10 @@ jobs:
 #      with: 
 #        framework: terraform
     - name: Run checkov
-      run: checkov -d . --output sarif --framework terraform
+      run: checkov -d . --download-external-modules true --output sarif --framework terraform
+      env:
+        GITHUB_PAT: ${{ github.token }}
+
     # Upload results to GitHub Advanced Security
     #- name: Upload SARIF file
     #  if: success() || failure()
