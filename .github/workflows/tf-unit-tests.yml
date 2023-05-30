@@ -39,11 +39,11 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check -recursive
 
-    - uses: terraform-linters/tflint-load-config-action@v0
-      with:
-        source-repo: yorkutest/tflint-config
-        source-path: .tflint.hcl
-        token: ${{ github.token }}
+#    - uses: terraform-linters/tflint-load-config-action@v0
+#      with:
+#        source-repo: yorkutest/tflint-config
+#        source-path: ./.tflint.hcl
+#        token: ${{ github.token }}
 
     # Start liniting 
     - uses: actions/cache@v3
@@ -58,7 +58,7 @@ jobs:
 #        tflint_version: latest
 
     - name: Init TFLint
-      run: tflint --init
+      run: tflint --init 
       env:
         # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
         GITHUB_TOKEN: ${{ github.token }}
