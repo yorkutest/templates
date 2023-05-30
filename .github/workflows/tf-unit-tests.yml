@@ -57,11 +57,11 @@ jobs:
 #      with:
 #        tflint_version: latest
 
-    - name: Init TFLint
-      run: tflint --init 
-      env:
-        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
-        GITHUB_TOKEN: ${{ github.token }}
+#    - name: Init TFLint
+#      run: tflint --init 
+#      env:
+#        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+#        GITHUB_TOKEN: ${{ github.token }}
 
     - name: Show version
       run: tflint --version
