@@ -52,7 +52,7 @@ jobs:
 #        tflint_version: latest
 
     - name: Init TFLint
-      run: tflint --init
+      run: tflint --init --enable-plugin=azurerm
       env:
         # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
         GITHUB_TOKEN: ${{ github.token }}
