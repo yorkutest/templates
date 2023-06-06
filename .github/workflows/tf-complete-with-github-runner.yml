@@ -64,7 +64,7 @@ jobs:
 
     - name: tflint setup azure plugin
       run: |
-        cat .tflint.hcl <<- EOM
+        cat >> .tflint.hcl <<EOM
         plugin "terraform" {
           enabled = true
           preset  = "recommended"
