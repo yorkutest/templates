@@ -46,9 +46,6 @@ jobs:
     - name: Terraform Validate
       run: terraform validate
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Validate
-      run: terraform validate
 
     # Start liniting 
     - uses: actions/cache@v3
@@ -76,6 +73,10 @@ jobs:
             source  = "github.com/terraform-linters/tflint-ruleset-azurerm"
         }
         EOM 
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Echo file
+      run: cat .tflint.hcl
 
     - name: Init TFLint
       run: tflint --init 
