@@ -61,18 +61,17 @@ jobs:
 
     - name: tflint setup azure plugin
       run: |
-        cat >> .tflint.hcl <<EOM
-        plugin "terraform" {
-          enabled = true
-          preset  = "recommended"
-        }
-      
-        plugin "azurerm" {
-            enabled = true
-            version = "0.23.0"
-            source  = "github.com/terraform-linters/tflint-ruleset-azurerm"
-        }
-        EOM 
+        echo 'plugin "terraform" {' > .tflint.hcl
+        echo '  enabled = true' >> .tflint.hcl
+        echo '  preset  = "recommended"' >> .tflint.hcl
+        echo '}' >> .tflint.hcl
+        echo ' ' >> .tflint.hcl
+        echo 'plugin "azurerm" {' >> .tflint.hcl
+        echo '    enabled = true' >> .tflint.hcl
+        echo '    version = "0.23.0"' >> .tflint.hcl
+        echo '    source  = "github.com/terraform-linters/tflint-ruleset-azurerm"' >> .tflint.hcl
+        echo '}' >> .tflint.hcl
+
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Echo file
